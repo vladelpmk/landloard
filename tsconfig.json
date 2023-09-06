@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "sourceMap": true
+  },
+  "include": [
+    "src/",
+  ],
+  "exclude": [
+    "node_modules/",
+  ]
+}
