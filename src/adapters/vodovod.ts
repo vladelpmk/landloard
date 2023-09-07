@@ -20,7 +20,6 @@ export const run = async () => {
   await input(page, "UserName", userInfo.UserName);
   await input(page, "Password", userInfo.Password);
   await submit(page);
-  await page.waitForNavigation();
   if ((await page.url()) !== loggedInUrl) {
     console.log(await page.$eval("body", (body) => body));
     throw new Error(`Login failed ${await page.url()}`);
