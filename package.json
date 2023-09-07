@@ -17,6 +17,8 @@
   "dependencies": {
     "@iamtraction/google-translate": "^2.0.1",
     "dotenv": "^16.3.1",
+    "google-auth-library": "^8.9.0",
+    "google-spreadsheet": "^4.0.2",
     "node-fetch": "^3.0.0",
     "puppeteer": "^21.1.1"
   },

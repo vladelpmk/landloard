@@ -3,6 +3,7 @@ import "dotenv/config";
 import puppeteer from "puppeteer";
 import { input, submit } from "../lib/browser.js";
 import { delay } from "../lib/utils.js";
+import { Invoice } from "./types.js";
 
 const loginUrl = "https://e.vodovod-skopje.com.mk/Login";
 const unpaidUrl = "https://e.vodovod-skopje.com.mk/Invoices/Unpaid";
@@ -13,7 +14,7 @@ const userInfo = {
   Password: process.env.VODOVOD_PASS,
 };
 
-export const run = async () => {
+export const run = async (): Promise<Invoice[]> => {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
 
@@ -56,6 +57,8 @@ export const run = async () => {
       totalSum: parseFloat(tableArray[i][8].replace(",", ".")),
       partPaid: parseFloat(tableArray[i][9].replace(",", ".")),
       owes: parseFloat(tableArray[i][10].replace(",", ".")),
+      amount: parseFloat(tableArray[i][10].replace(",", ".")),
+      paid: false,
     });
   }
 
