@@ -2,6 +2,7 @@ import translate from "@iamtraction/google-translate";
 import "dotenv/config";
 import puppeteer from "puppeteer";
 import { input, submit } from "../lib/browser.js";
+import { delay } from "../lib/utils.js";
 
 const loginUrl = "https://e.vodovod-skopje.com.mk/Login";
 const unpaidUrl = "https://e.vodovod-skopje.com.mk/Invoices/Unpaid";
@@ -20,8 +21,11 @@ export const run = async () => {
   await input(page, "UserName", userInfo.UserName);
   await input(page, "Password", userInfo.Password);
   await submit(page);
+  await delay(1000);
+
   if ((await page.url()) !== loggedInUrl) {
-    console.log(await page.$eval("body", (body) => body));
+    let bodyHTML = await page.evaluate(() => document.body.innerHTML);
+    console.log(bodyHTML);
     throw new Error(`Login failed ${await page.url()}`);
   }
   await page.goto(unpaidUrl);
