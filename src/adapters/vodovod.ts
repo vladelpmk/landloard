@@ -21,7 +21,7 @@ export const run = async () => {
   await input(page, "Password", userInfo.Password);
   await submit(page);
   if ((await page.url()) !== loggedInUrl) {
-    throw new Error("Login failed");
+    throw new Error(`Login failed ${await page.url()}`);
   }
   await page.goto(unpaidUrl);
 
