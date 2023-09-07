@@ -17,3 +17,7 @@ jobs:
         env:
           VODOVOD_USER: "${{ secrets.VODOVOD_USER }}"
           VODOVOD_PASS: "${{ secrets.VODOVOD_PASS }}"
+          PRIVATE_KEY_ID: "${{ secrets.PRIVATE_KEY_ID }}"
+          PRIVATE_KEY: "${{ secrets.PRIVATE_KEY }}"
+          CLIENT_EMAIL: "${{ secrets.CLIENT_EMAIL }}"
+          CLIENT_ID: "${{ secrets.CLIENT_ID }}"
