@@ -16,3 +16,4 @@ jobs:
         env:
           VODOVOD_USER: ${{ secrets.VODOVOD_USER }}
           VODOVOD_PASS: ${{ secrets.VODOVOD_PASS }}
+          TEST_ME: ${{ vars.TEST_ME }}
