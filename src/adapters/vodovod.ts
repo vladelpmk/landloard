@@ -22,6 +22,7 @@ export const run = async () => {
   await submit(page);
   await page.waitForNavigation();
   if ((await page.url()) !== loggedInUrl) {
+    console.log(await page.$eval("body", (body) => body));
     throw new Error(`Login failed ${await page.url()}`);
   }
   await page.goto(unpaidUrl);
