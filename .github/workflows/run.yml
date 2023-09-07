@@ -17,3 +17,8 @@ jobs:
           VODOVOD_USER: ${{ secrets.VODOVOD_USER }}
           VODOVOD_PASS: ${{ secrets.VODOVOD_PASS }}
           TEST_ME: ${{ vars.TEST_ME }}
+      - shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.VODOVOD_USER }}
+        run: |
+          echo "$SUPER_SECRET"
