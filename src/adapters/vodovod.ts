@@ -8,6 +8,7 @@ const loginUrl = "https://e.vodovod-skopje.com.mk/Login";
 const unpaidUrl = "https://e.vodovod-skopje.com.mk/Invoices/Unpaid";
 const loggedInUrl = "https://e.vodovod-skopje.com.mk/Default.aspx";
 
+console.log(process.env);
 const userInfo = {
   UserName: process.env.VODOVOD_USER,
   Password: process.env.VODOVOD_PASS,
