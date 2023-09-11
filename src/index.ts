@@ -22,6 +22,6 @@ import {
 const browser = await lunchConnectToBrowser();
 
 setInterval(async () => {
-  const page = await getOrAddPageByDomain("https://www.evnonline.mk", browser);
+  const page = await getOrAddPageByDomain("www.evnonline.mk", browser);
   page.reload();
 }, 15 * 60 * 1000);
