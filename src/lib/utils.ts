@@ -3,3 +3,7 @@ export function delay(time) {
     setTimeout(resolve, time);
   });
 }
+
+export function debug(log: string) {
+  console.debug(`[DEBUG] ${log}`);
+}

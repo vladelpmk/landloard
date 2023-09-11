@@ -9,18 +9,13 @@ const loginUrl = "https://e.vodovod-skopje.com.mk/Login";
 const unpaidUrl = "https://e.vodovod-skopje.com.mk/Invoices/Unpaid";
 const loggedInUrl = "https://e.vodovod-skopje.com.mk/Default.aspx";
 
-const userInfo = {
-  UserName: process.env.VODOVOD_USER,
-  Password: process.env.VODOVOD_PASS,
-};
-
 export const run = async (): Promise<Invoice[]> => {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
 
   await page.goto(loginUrl);
-  await input(page, "UserName", userInfo.UserName);
-  await input(page, "Password", userInfo.Password);
+  await input(page, "UserName", process.env.VODOVOD_USER);
+  await input(page, "Password", process.env.VODOVOD_PASS);
   await submit(page);
   await delay(1000);
 
