@@ -4,7 +4,18 @@ export function delay(time) {
   });
 }
 
+function getFullTimestamp() {
+  const pad = (n, s = 2) => `${new Array(s).fill(0)}${n}`.slice(-s);
+  const d = new Date();
+
+  return `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(
+    d.getDate(),
+  )} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}.${pad(
+    d.getMilliseconds(),
+    3,
+  )}`;
+}
+
 export function debug(log: string) {
-  const now = new Date();
-  console.debug(`[${now.toString()}][DEBUG] ${log}`);
+  console.debug(`[${getFullTimestamp()}][DEBUG] ${log}`);
 }
