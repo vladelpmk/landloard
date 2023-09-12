@@ -5,5 +5,6 @@ export function delay(time) {
 }
 
 export function debug(log: string) {
-  console.debug(`[DEBUG] ${log}`);
+  const now = new Date();
+  console.debug(`[${now.toString()}][DEBUG] ${log}`);
 }

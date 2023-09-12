@@ -32,12 +32,13 @@ export const lunchConnectToBrowser = async () => {
 };
 
 export const getOrAddPageByDomain = async (domain: string, browser) => {
-  debug(`get or add page by domain ="${domain}"`);
+  const hostname = new URL(domain).hostname;
+  debug(`get or add page by domain ="${hostname}"`);
   const pages = await browser.pages();
 
   for (let i in pages) {
-    const url = await pages[i].url();
-    if (url.includes(domain)) {
+    const url = new URL(await pages[i].url());
+    if (url.hostname.includes(hostname)) {
       return pages[i];
     }
   }

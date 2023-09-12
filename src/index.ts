@@ -10,6 +10,7 @@ import {
   getOrAddPageByDomain,
   lunchConnectToBrowser,
 } from "./controler/chrome.js";
+import { startAutoRefresh } from "./controler/page.js";
 
 // (async () => {
 //   const result = await runVodovod();
@@ -20,8 +21,6 @@ import {
 
 //
 const browser = await lunchConnectToBrowser();
+const page = await getOrAddPageByDomain("https://www.evnonline.mk/", browser);
 
-setInterval(async () => {
-  const page = await getOrAddPageByDomain("www.evnonline.mk", browser);
-  page.reload();
-}, 5 * 60 * 1000);
+startAutoRefresh(page);
