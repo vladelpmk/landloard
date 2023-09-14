@@ -6,8 +6,9 @@ import puppeteer from "puppeteer";
 import { addOrUpdateRow } from "./spreadsheets.js";
 
 const domain = "https://www.evnonline.mk/";
+let page: puppeteer.Page;
 
-const getData = async (page: puppeteer.Page) => {
+const getData = async () => {
   debug("Get EVN data START");
 
   const tableArray = await page.$eval("table.table-bordered tbody", (tbody) => {
@@ -36,55 +37,24 @@ const getData = async (page: puppeteer.Page) => {
   debug("Get EVN data END");
 };
 
-
- 
-
 var task = cron.schedule(
   "0 0 * * *",
-  (page) => {
+  () => {
     debug("Run chon")
-    getData(page)
+    getData()
   },
   {
     scheduled: false,
   },
 );
 
-
 export const run = async () => {
   try {
     const browser = await lunchConnectToBrowser();
-    const page = await getOrAddPageByDomain(domain, browser);
+    page = await getOrAddPageByDomain(domain, browser);
     startAutoRefresh(page);
-    task.start(page);
+    task.start();
   } catch (e) {
     console.error(e);
   }
 };
-
-
-  // debug(`open new page`);
-  // const page = await browser.newPage();
-
-  // debug(`go to page ${loginUrl}`);
-  // await page.goto(loginUrl);
-
-  // await input(page, "UsernameEmail", process.env.EVN_USER);
-  // await input(page, "password", process.env.EVN_PASS);
-  // debug(`Click login`);
-  // await page.click("button.buttonNext");
-  // await delay(10000);
-
-  // if ((await page.url()) !== loggedInUrl) {
-  //   let bodyHTML = await page.evaluate(() => document.body.innerHTML);
-  //   console.log(bodyHTML);
-  //   throw new Error(`Login failed ${await page.url()}`);
-  // }
-
-  // debug(`go to page ${invoicedUrl}`);
-  // await page.goto(invoicedUrl);
-  // await delay(1000);
-
-  // browser.disconnect();
-  // const result = [];
-  // return result;
