@@ -45,6 +45,7 @@ export const getOrAddPageByDomain = async (domain: string, browser) => {
 
   debug(`not found open new page`);
   const page = await browser.newPage();
+  page.setDefaultNavigationTimeout(100000);
   await page.goto(domain);
   return page;
 };
